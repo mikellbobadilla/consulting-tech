@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
-public class AppUserService implements UserDetailsService {
+public class LoginUserService implements UserDetailsService {
 
   private final UserRepository userRepository;
 
   @Autowired
-  public AppUserService(UserRepository userRepository) {
+  public LoginUserService(UserRepository userRepository) {
     this.userRepository = userRepository;
   }
 
