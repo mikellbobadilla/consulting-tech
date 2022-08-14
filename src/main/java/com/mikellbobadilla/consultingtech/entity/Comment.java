@@ -14,13 +14,13 @@ public class Comment {
   private Post idPost;
   @ManyToOne
   @JoinColumn(name = "id_user")
-  private User idUser;
+  private AppUser idUser;
   private String comment;
 
   public Comment() {
   }
 
-  public Comment(Long id, Post idPost, User idUser, String comment) {
+  public Comment(Long id, Post idPost, AppUser idUser, String comment) {
     this.id = id;
     this.idPost = idPost;
     this.idUser = idUser;
@@ -43,11 +43,11 @@ public class Comment {
     this.idPost = idPost;
   }
 
-  public User getIdUser() {
+  public AppUser getIdUser() {
     return idUser;
   }
 
-  public void setIdUser(User idUser) {
+  public void setIdUser(AppUser idUser) {
     this.idUser = idUser;
   }
 

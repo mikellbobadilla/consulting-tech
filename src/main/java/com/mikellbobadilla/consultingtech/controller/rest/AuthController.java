@@ -1,19 +1,19 @@
-package com.mikellbobadilla.consultingtech.controller;
+package com.mikellbobadilla.consultingtech.controller.rest;
 
-import com.mikellbobadilla.consultingtech.entity.User;
+import com.mikellbobadilla.consultingtech.entity.AppUser;
 import com.mikellbobadilla.consultingtech.repository.UserRepository;
 import com.mikellbobadilla.consultingtech.response.MessageResponse;
 import com.mikellbobadilla.consultingtech.response.UserLogin;
+import com.mikellbobadilla.consultingtech.service.LoginUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/auth")
@@ -25,34 +25,19 @@ public class AuthController {
   private PasswordEncoder passwordEncoder;
   @Autowired
   private UserRepository userRepository;
-
+  @Autowired
+  LoginUserService userService;
 
   @PostMapping("/login")
-  public ResponseEntity<MessageResponse> login(@RequestBody UserLogin userLogin){
-    // Process to authenticate
-    Optional<User> user = userRepository.findByUsername(userLogin.getUsername());
-    if(user.isPresent()){
-      if(passwordEncoder.matches(userLogin.getPassword(), user.get().getPassword())){
-        Authentication authentication = authManager.authenticate(
-                new UsernamePasswordAuthenticationToken(userLogin.getUsername(), userLogin.getPassword())
-        );
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        // Suppose return a JWT token!! need to implement
-        return ResponseEntity.ok().body(new MessageResponse("The user was authenticate!"));
-      }else {
-        return ResponseEntity.badRequest().body(
-                new MessageResponse("username or password incorrect")
-        );
-      }
-
-    }
-    return ResponseEntity.notFound().build();
+  public ResponseEntity<MessageResponse>login(@RequestBody UserLogin userLogin){
+    User newUser = (User) userService.loadUserByUsername(userLogin.getUsername());
+    Authentication authentication = userService.authenticate(newUser, userLogin.getPassword());
+    SecurityContextHolder.getContext().setAuthentication(authentication);
+    return ResponseEntity.ok().body(new MessageResponse("The user was authenticate"));
   }
 
-
-
   @PostMapping("/register")
-  public ResponseEntity<MessageResponse> register(@RequestBody User userRequest){
+  public ResponseEntity<MessageResponse> register(@RequestBody AppUser userRequest){
 
     if(userRequest.getPassword().isEmpty()){
       return ResponseEntity.badRequest().body(
@@ -72,7 +57,7 @@ public class AuthController {
       );
     }
     
-    User user = new User(
+    AppUser user = new AppUser(
             userRequest.getName(),
             userRequest.getUsername(),
             userRequest.getEmail(),

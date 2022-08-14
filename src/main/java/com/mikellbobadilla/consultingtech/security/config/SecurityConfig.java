@@ -18,7 +18,14 @@ public class SecurityConfig {
     http
             .csrf().disable()
             .authorizeRequests().antMatchers(HttpMethod.POST,"/api/auth/**").permitAll()
-            .anyRequest().authenticated();
+            .anyRequest().authenticated()
+            .and()
+        .formLogin(
+            form -> form
+              .loginPage("/login")
+                .permitAll()
+              .defaultSuccessUrl("/api/users/all")
+            );
 
 /*    http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);*/
     return http.build();

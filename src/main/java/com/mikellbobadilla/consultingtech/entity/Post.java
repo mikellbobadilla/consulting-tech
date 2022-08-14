@@ -15,12 +15,12 @@ public class Post {
 
   @ManyToOne
   @JoinColumn(name = "id_user")
-  private User idUser;
+  private AppUser idUser;
 
   public Post() {
   }
 
-  public Post(Long id, String title, String content, Date date, User idUser) {
+  public Post(Long id, String title, String content, Date date, AppUser idUser) {
     this.id = id;
     this.title = title;
     this.content = content;
@@ -60,11 +60,11 @@ public class Post {
     this.date = date;
   }
 
-  public User getIdUser() {
+  public AppUser getIdUser() {
     return idUser;
   }
 
-  public void setIdUser(User idUser) {
+  public void setIdUser(AppUser idUser) {
     this.idUser = idUser;
   }
 

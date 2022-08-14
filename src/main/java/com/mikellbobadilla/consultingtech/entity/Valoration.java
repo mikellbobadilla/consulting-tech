@@ -11,7 +11,7 @@ public class Valoration {
   private Long id;
   @ManyToOne
   @JoinColumn(name = "id_user")
-  private User idUser;
+  private AppUser idUser;
   @ManyToOne
   @JoinColumn(name = "id_post")
   private Post idPost;
@@ -20,7 +20,7 @@ public class Valoration {
   public Valoration() {
   }
 
-  public Valoration(Long id, User idUser, Post idPost, Boolean value) {
+  public Valoration(Long id, AppUser idUser, Post idPost, Boolean value) {
     this.id = id;
     this.idUser = idUser;
     this.idPost = idPost;
@@ -34,11 +34,11 @@ public class Valoration {
     this.id = id;
   }
 
-  public User getIdUser() {
+  public AppUser getIdUser() {
     return idUser;
   }
 
-  public void setIdUser(User idUser) {
+  public void setIdUser(AppUser idUser) {
     this.idUser = idUser;
   }
 
