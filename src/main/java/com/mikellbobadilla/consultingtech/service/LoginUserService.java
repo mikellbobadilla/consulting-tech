@@ -14,7 +14,6 @@ public class LoginUserService implements UserDetailsService {
 
   private final UserRepository userRepository;
 
-  @Autowired
   public LoginUserService(UserRepository userRepository) {
     this.userRepository = userRepository;
   }

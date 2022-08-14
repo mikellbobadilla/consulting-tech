@@ -1,6 +1,7 @@
 package com.mikellbobadilla.consultingtech.security.config;
 
 
+import com.mikellbobadilla.consultingtech.service.LoginUserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -27,4 +28,6 @@ public class SecurityConfig {
   public PasswordEncoder encoder(){
     return new BCryptPasswordEncoder(10);
   }
+
+
 }
