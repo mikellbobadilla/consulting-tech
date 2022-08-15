@@ -21,10 +21,10 @@ public class SecurityConfig {
             .anyRequest().authenticated()
             .and()
         .formLogin(
-            form -> form
-              .loginPage("/login")
-                .permitAll()
-              .defaultSuccessUrl("/api/users/all")
+            // form -> form
+            //   .loginPage("/login")
+            //     .permitAll()
+            //   .defaultSuccessUrl("/api/users/all")
             );
 
 /*    http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);*/
