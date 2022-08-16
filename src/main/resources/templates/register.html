@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style.css" th:href="@{/styles/style_form.css}">
+    <title>Register Page</title>
+</head>
+<body>
+    <main class="main">
+        <div class="content-title">
+            <h1>Consulting Tech</h1>
+        </div>
+        <div class="content-form">
+            <form class="form" action="" method="post">
+                <div class="content-input">
+                    <label for="name">Ingrese su nombre:</label>
+                    <input type="text" name="name" id="name" placeholder="juanito" required>
+                </div>
+                <div class="content-input">
+                    <label for="email">Ingrese su email:</label>
+                    <input type="email" name="email" id="emal" placeholder="email@email.com" required>
+                </div>
+                <div class="content-input">
+                    <label for="username">Nuevo usuario:</label>
+                    <input type="text" name="username" id="username" placeholder="user123" required>
+                </div>
+                <div class="content-input">
+                    <label for="password">Ingrese su contrasena:</label>
+                    <input type="password" name="password" id="password" placeholder="password" required>
+                </div>
+                <div class="content-register">
+                    <p>ya tenes cuenta? <a href="/login">ingresa</a></p>
+                </div>
+                <div class="content-submit">
+                    <button type="submit">Sing up</button>
+                </div>
+            </form>
+        </div>
+    </main>  
+</body>
+</html>

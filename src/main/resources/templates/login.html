@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es"> <!--xmlns:th="http://www.thymeleaf.org"-->
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./style/style.css">
+  <link rel="stylesheet" href="../static/styles/style_form.css" th:href="@{/styles/style_form.css}" >
   <title>Login Page</title>
 </head>
 <body>
@@ -19,11 +19,11 @@
         <input type="text" name="username" id="username" placeholder="user123" required>
       </div>
       <div class="content-input">
-        <label for="password">Ingrese su contraseña:</label>
+        <label for="password">Ingrese su contrasena:</label>
         <input type="password" name="password" id="password" placeholder="password" required>
       </div>
       <div class="content-register">
-        <p>no tenes cuenta? <a href="#">registrate</a></p>
+        <p>no tenes cuenta? <a href="/register">registrate</a></p>
       </div>
       <div class="content-submit">
         <button type="submit">Sing in</button>

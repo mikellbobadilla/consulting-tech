@@ -174,7 +174,7 @@ body{
 
 /* Style for mobile */
 
-@media only screen and (max-width: 450px){
+@media only screen and (max-width: 700px){
 
     .content-title{
         /* border: 2px solid blue; */

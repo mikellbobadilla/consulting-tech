@@ -1,7 +1,6 @@
 package com.mikellbobadilla.consultingtech.security.config;
 
 
-import com.mikellbobadilla.consultingtech.service.LoginUserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -18,12 +17,17 @@ public class SecurityConfig {
     http
             .csrf().disable()
             .authorizeRequests()
-              .antMatchers(HttpMethod.POST,"/api/auth/**").permitAll()
-              .antMatchers("/css/*", "/js/*").permitAll()
+              .antMatchers(HttpMethod.POST,"/api/auth/*").permitAll()
+              .antMatchers("/styles/*").permitAll()
+              .antMatchers("/register").permitAll()
+              .antMatchers("/", "/index").authenticated()
               .anyRequest().authenticated()
             .and()
             .formLogin()
-              .loginPage("/login").permitAll();
+              .loginPage("/login").permitAll()
+              .usernameParameter("username")
+              .passwordParameter("password")
+              .successForwardUrl("/");
 
     return http.build();
   }
