@@ -17,17 +17,14 @@ public class SecurityConfig {
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http
             .csrf().disable()
-            .authorizeRequests().antMatchers(HttpMethod.POST,"/api/auth/**").permitAll()
-            .anyRequest().authenticated()
+            .authorizeRequests()
+              .antMatchers(HttpMethod.POST,"/api/auth/**").permitAll()
+              .antMatchers("/css/*", "/js/*").permitAll()
+              .anyRequest().authenticated()
             .and()
-        .formLogin(
-            // form -> form
-            //   .loginPage("/login")
-            //     .permitAll()
-            //   .defaultSuccessUrl("/api/users/all")
-            );
+            .formLogin()
+              .loginPage("/login").permitAll();
 
-/*    http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);*/
     return http.build();
   }
 
